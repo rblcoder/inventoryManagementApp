@@ -6,4 +6,5 @@ from django.http import HttpResponse
 
 
 def index(request):
-    return HttpResponse("Hello, world. You are in products index")
+    # return HttpResponse("Hello, world. You are in products index")
+    return render(request, 'products/product_list.html', {})
