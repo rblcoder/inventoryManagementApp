@@ -9,6 +9,18 @@ Activate the virtual environment using
 ```shell
 source venv/bin/activate
 ```
+Upgrade pip
+```shell
+pip install --upgrade pip
+```
+Run migration
+```shell
+python manage.py migrate
+```
+Create a superuser
+```shell
+python manage.py createsuperuser
+```
 To run the application:
 ```shell
 python manage.py runserver
