@@ -12,3 +12,5 @@ for model in products_models:
         pass
 
 admin.site.site_header = "Inventory Management System"
+admin.site.site_title = "Inventory Management"
+admin.site.index_title = "Manage Products and Orders"
