@@ -13,7 +13,53 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 from pathlib import Path
 import os
 from dotenv import load_dotenv
+import boto3
+
 load_dotenv()
+
+AWS_REGION_NAME = str(os.getenv('AWS_REGION_NAME'))
+boto3_logs_client = boto3.client("logs", region_name=AWS_REGION_NAME)
+#
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers': False,
+#     'root': {
+#         'level': 'DEBUG',
+#         # Adding the watchtower handler here causes all loggers in the project that
+#         # have propagate=True (the default) to send messages to watchtower. If you
+#         # wish to send only from specific loggers instead, remove "watchtower" here
+#         # and configure individual loggers below.
+#         # 'handlers': ['watchtower', 'console'],
+#         'handlers': ['console'],
+#     },
+#     'handlers': {
+#         'console': {
+#             'class': 'logging.StreamHandler',
+#         },
+#         # 'watchtower': {
+#         #     'class': 'watchtower.CloudWatchLogHandler',
+#         #     'boto3_client': boto3_logs_client,
+#         #     'log_group_name': 'inventoryManagementApp',
+#         #     # Decrease the verbosity level here to send only those logs to watchtower,
+#         #     # but still see more verbose logs in the console. See the watchtower
+#         #     # documentation for other parameters that can be set here.
+#         #     'level': 'DEBUG'
+#         # }
+#     },
+#     'loggers': {
+#         # In the debug server (`manage.py runserver`), several Django system loggers cause
+#         # deadlocks when using threading in the logging handler, and are not supported by
+#         # watchtower. This limitation does not apply when running on production WSGI servers
+#         # (gunicorn, uwsgi, etc.), so we recommend that you set `propagate=True` below in your
+#         # production-specific Django settings file to receive Django system logs in CloudWatch.
+#         'django': {
+#             'level': 'DEBUG',
+#             'handlers': ['console'],
+#             'propagate': False
+#         }
+#         # Add any other logger-specific configuration here.
+#     }
+# }
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -27,9 +73,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = str(os.getenv('SECRET_KEY'))
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = bool(os.getenv('IS_DEVELOPMENT', False))
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = [os.getenv('APP_HOST')]
 
 
 # Application definition
@@ -124,6 +170,9 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
+
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
