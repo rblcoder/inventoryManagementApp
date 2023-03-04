@@ -82,6 +82,7 @@ ALLOWED_HOSTS = [os.getenv('APP_HOST')]
 
 INSTALLED_APPS = [
     'products.apps.ProductsConfig',
+    'orders.apps.OrdersConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
