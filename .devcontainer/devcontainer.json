@@ -4,9 +4,7 @@
 	"waitFor": "onCreateCommand",
 	"updateContentCommand": "pip install -r requirements.txt && python manage.py migrate",
 	"postCreateCommand": "",
-	"postAttachCommand": {
-		"server": "python manage.py runserver"
-	},
+	"postAttachCommand": "",
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	"features": {
 		"ghcr.io/devcontainers/features/aws-cli:1": {},
