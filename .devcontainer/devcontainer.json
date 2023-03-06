@@ -1,0 +1,43 @@
+{
+	"name": "Inventory Management App Configuration",
+	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+	"waitFor": "onCreateCommand",
+	"updateContentCommand": "pip install -r requirements.txt && python manage.py migrate",
+	"postCreateCommand": "",
+	"postAttachCommand": {
+		"server": "python manage.py runserver"
+	},
+	// Features to add to the dev container. More info: https://containers.dev/features.
+	"features": {
+		"ghcr.io/devcontainers/features/aws-cli:1": {},
+		"ghcr.io/devcontainers-contrib/features/aws-eb-cli:1": {}
+	},
+	"remoteEnv": {
+		"AWS_CLI_AUTO_PROMPT": "on-partial"
+	},
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"ms-azuretools.vscode-docker",
+				"ms-python.python"
+			],
+			"settings": {
+				"terminal.integrated.fontSize": 20,
+				"editor.fontSize": 20,
+				"workbench.colorTheme": "Default Dark+ Experimental"
+			}
+		}
+
+
+
+	},
+	"portsAttributes": {
+    "8000": {
+      "label": "Application",
+      "onAutoForward": "openPreview"
+    }
+  },
+  "forwardPorts": [8000]
+	// Uncomment to connect as an existing user other than the container default. More info: https://aka.ms/dev-containers-non-root.
+	// "remoteUser": "devcontainer"
+}
