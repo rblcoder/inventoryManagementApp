@@ -73,8 +73,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = str(os.getenv('SECRET_KEY'))
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = bool(os.getenv('IS_DEVELOPMENT', False))
-
+if  os.getenv('IS_DEVELOPMENT', 'False').lower() == 'true':
+    DEBUG = True
+else:
+    DEBUG = False
 ALLOWED_HOSTS = [os.getenv('APP_HOST')]
 
 

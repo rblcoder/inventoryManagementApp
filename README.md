@@ -36,9 +36,22 @@ After uploading the zip file from Elastic Beanstalk console, edit enviroment var
 set APP_HOST to the url of the Elastic Beanstalk application
 
 set SECRET_KEY 
-To generate a secret key refer to https://www.educative.io/answers/how-to-generate-a-django-secretkey
+
+To generate one, refer to https://www.educative.io/answers/how-to-generate-a-django-secretkey
+or
+```shell
+python manage.py shell
+from django.core.management.utils import get_random_secret_key
+get_random_secret_key()
+
+```
 
 set IS_DEVELOPMENT to False
 
 Used the bootstrap theme
 https://startbootstrap.com/previews/sb-admin
+
+To install Elasticbeanstalk cli
+```shell
+pip install awsebcli
+```
