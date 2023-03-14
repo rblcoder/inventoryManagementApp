@@ -8,14 +8,10 @@ https://docs.djangoproject.com/en/4.1/howto/deployment/wsgi/
 """
 
 import os
-from settings import base
+
 
 from django.core.wsgi import get_wsgi_application
 
-# os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'inventory_main.settings')
-if base.DEBUG:
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'inventory_main.settings.local')
-else:
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'inventory_main.settings.production')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'inventory_main.settings')
 
 application = get_wsgi_application()
