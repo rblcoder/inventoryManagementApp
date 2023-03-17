@@ -20,6 +20,7 @@ from api import views
 
 router = DefaultRouter()
 router.register("category", views.CategoryViewSet, basename="category")
+router.register("currency", views.CurrencyViewSet, basename="currency")
 
 urlpatterns = [
     path('api/', include(router.urls)),
